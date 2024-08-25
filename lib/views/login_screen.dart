@@ -5,6 +5,7 @@ import 'package:plant_care/controller/login_controller.dart';
 import 'package:plant_care/utils/constant/sizes.dart';
 import 'package:plant_care/utils/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_care/views/reset_password.dart';
 import 'package:plant_care/views/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -154,7 +155,7 @@ class LoginScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: ()=> Get.to(()=> const ResetPasswordScreen()),
                               child: const Text(
                                 'Forgot Password?',
                                 style: TextStyle(color: Colors.white),

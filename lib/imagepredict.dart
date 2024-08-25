@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:plant_care/Auth/authentication_repository.dart';
 import 'package:plant_care/views/guaidance.dart';
 import 'package:plant_care/views/login_screen.dart';
 
@@ -142,17 +143,13 @@ class _ImagePredictionScreenState extends State<ImagePredictionScreen> {
                           child: const Text('Guaidance')),
                     ),
                     PopupMenuItem(
-                        child: Row(
-                      children: [
-                        IconButton(
-                            onPressed: () async {
-                              await _auth.signOut();
-                              Get.to(() => const LoginScreen());
-                            },
-                            icon: const Icon(Iconsax.logout)),
-                        const Text('logout')
-                      ],
-                    )),
+                      child: TextButton(
+                          onPressed: () async {
+                            await AuthenticationRepository.instance.logout();
+                            Get.to(() => const LoginScreen());
+                          },
+                          child: const Text('Logout')),
+                    )
                   ]),
         ]),
       ),

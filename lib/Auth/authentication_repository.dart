@@ -7,7 +7,6 @@ import 'package:plant_care/utils/constant/exception.dart';
 
 import 'package:plant_care/views/login_screen.dart';
 
-
 import '../imagepredict.dart';
 
 class AuthenticationRepository extends GetxController {
@@ -66,4 +65,34 @@ class AuthenticationRepository extends GetxController {
       throw 'Something went wrong, Please try again';
     }
   }
+
+  Future<void> resetpassword(String email) async {
+    try {
+      return await _auth.sendPasswordResetEmail(
+        email: email,
+      );
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (e) {
+      throw TFormatException(e.message);
+    } catch (e) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
+   Future<void> logout() async {
+    try {
+     
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
 }
